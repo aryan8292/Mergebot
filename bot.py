@@ -89,7 +89,7 @@ async def sendLogFile(c: Client, m: Message):
 async def loginHandler(c: Client, m: Message):
     user = UserSettings(m.from_user.id, m.from_user.first_name)
     if user.banned:
-        await m.reply_text(text=f"**Banned User Detected!**\n  🛡️ Unfortunately you can't use me\n\nContact: 🈲 @{Config.OWNER_USERNAME}", quote=True)
+        await m.reply_text(text=f"**Banned User Detected!**\n  🛡️ you are ban by owner sorry you can't use me\n\nContact: 🈲 @{Config.OWNER_USERNAME}", quote=True)
         return
     if user.user_id == int(Config.OWNER):
         user.allowed = True
@@ -99,7 +99,7 @@ async def loginHandler(c: Client, m: Message):
         try:
             passwd = m.text.split(" ", 1)[1]
         except:
-            await m.reply_text("**Command:**\n  `/login <password>`\n\n**Usage:**\n  `password`: Get the password from owner",quote=True,parse_mode=enums.parse_mode.ParseMode.MARKDOWN)
+            await m.reply_text("**Command:**\n  `/login <password>`\n\n**Usage:**\n  `password`: Send #password in this group @allmoviesherejoinhindi and get password",quote=True,parse_mode=enums.parse_mode.ParseMode.MARKDOWN)
         passwd = passwd.strip()
         if passwd == Config.PASSWORD:
             user.allowed = True
@@ -108,7 +108,7 @@ async def loginHandler(c: Client, m: Message):
             )
         else:
             await m.reply_text(
-                text=f"**Login failed ❌,**\n  🛡️ Unfortunately you can't use me\n\nContact: 🈲 @{Config.OWNER_USERNAME}",
+                text=f"**Login failed ❌,**\n  🛡️ Send Correct password to use me\n\nContact: 🈲 @{Config.OWNER_USERNAME}",
                 quote=True,
             )
     user.set()
@@ -196,7 +196,7 @@ async def start_handler(c: Client, m: Message):
     if m.from_user.id != int(Config.OWNER):
         if user.allowed is False:
             res = await m.reply_text(
-                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Send Command /login then send password to use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
             return
@@ -219,7 +219,7 @@ async def files_handler(c: Client, m: Message):
     if user_id != int(Config.OWNER):
         if user.allowed is False:
             res = await m.reply_text(
-                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+                text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Send Command /login then send password to use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
                 quote=True,
             )
             return
@@ -399,7 +399,7 @@ async def photo_handler(c: Client, m: Message):
     # if m.from_user.id != int(Config.OWNER):
     if not user.allowed:
         res = await m.reply_text(
-            text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Unfortunately you can't use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
+            text=f"Hi **{m.from_user.first_name}**\n\n 🛡️ Send Command /login then send password to use me\n\n**Contact: 🈲 @{Config.OWNER_USERNAME}** ",
             quote=True,
         )
         del user
@@ -430,7 +430,7 @@ async def media_extracter(c: Client, m: Message):
             mid=rmess.id
             file_name = media.file_name
             if file_name is None:
-                await m.reply("File name not found; goto @yashoswalyo")
+                await m.reply("File name not found; goto @mdiskbot200")
                 return
             markup = bMaker.makebuttons(
                 set1=["Audio", "Subtitle", "Cancel"],
@@ -488,10 +488,10 @@ async def about_handler(c: Client, m: Message):
         quote=True,
         reply_markup=InlineKeyboardMarkup(
             [
-                [InlineKeyboardButton("👨‍💻Developer👨‍💻", url="https://t.me/yashoswalyo")],
+                [InlineKeyboardButton("🍿Movies lover🍿", url="https://t.me/allmoviesherejoinhindi")],
                 [
                     InlineKeyboardButton(
-                        "🏘Source Code🏘", url="https://github.com/yashoswalyo/MERGE-BOT"
+                        "🛸Updates Channel🛸", url="https://t.me/nickallbots"
                     ),
                     InlineKeyboardButton(
                         "🤔Deployed By🤔", url=f"https://t.me/{Config.OWNER_USERNAME}"
@@ -741,7 +741,7 @@ if __name__ == "__main__":
         with userBot:
             userBot.send_message(
                 chat_id=int(LOGCHANNEL),
-                text="Bot booted with Premium Account,\n\n  Thanks for using <a href='https://github.com/yashoswalyo/merge-bot'>this repo</a>",
+                text="Bot booted with Premium Account,\n\n  Thanks for using <a href='https://t.me/Merge_video_bot'>this bot</a>",
                 disable_web_page_preview=True,
             )
             user = userBot.get_me()
